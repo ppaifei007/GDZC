@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全国固定资产投资增幅统计 | 2001年至今</title>
+    <title>全国固定资产投资累计增幅统计 | 2001年至今</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
@@ -63,7 +63,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
                     <i class="fa fa-line-chart text-3xl mr-3 text-green-200"></i>
-                    <h1 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold">全国固定资产投资增幅统计</h1>
+                    <h1 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold">全国固定资产投资累计增幅统计</h1>
                 </div>
                 <div class="flex items-center">
                     <span id="last-update" class="hidden md:inline-block bg-white/20 px-3 py-1 rounded-full text-sm mr-4">
@@ -82,7 +82,7 @@
                     </button>
                 </div>
             </div>
-            <p class="mt-2 text-white/80">2001年至今全国固定资产投资月度同比增幅趋势分析 (%) | 每月更新</p>
+            <p class="mt-2 text-white/80">2001年至今全国固定资产投资累计同比增幅趋势分析 (%) | 采用当年累计口径计算</p>
         </div>
     </header>
 
@@ -92,38 +92,38 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div class="bg-white rounded-xl card-shadow p-6 stat-card-hover">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-gray-500 font-medium">累计月份</h3>
+                    <h3 class="text-gray-500 font-medium">统计年份</h3>
                     <i class="fa fa-calendar-check-o text-primary text-xl"></i>
                 </div>
-                <p id="total-months" class="text-3xl font-bold">加载中...</p>
-                <p class="text-gray-400 text-sm mt-2">自2001年1月起</p>
+                <p id="total-years" class="text-3xl font-bold">加载中...</p>
+                <p class="text-gray-400 text-sm mt-2">自2001年起</p>
             </div>
             
             <div class="bg-white rounded-xl card-shadow p-6 stat-card-hover">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-gray-500 font-medium">平均增幅</h3>
+                    <h3 class="text-gray-500 font-medium">年均累计增幅</h3>
                     <i class="fa fa-arrows-h text-primary text-xl"></i>
                 </div>
                 <p id="average-growth" class="text-3xl font-bold">加载中...</p>
-                <p class="text-gray-400 text-sm mt-2">所有月份平均值</p>
+                <p class="text-gray-400 text-sm mt-2">各年度全年累计平均值</p>
             </div>
             
             <div class="bg-white rounded-xl card-shadow p-6 stat-card-hover">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-gray-500 font-medium">最高增幅</h3>
+                    <h3 class="text-gray-500 font-medium">最高累计增幅</h3>
                     <i class="fa fa-arrow-up text-green-500 text-xl"></i>
                 </div>
                 <p id="max-growth" class="text-3xl font-bold">加载中...</p>
-                <p id="max-date" class="text-gray-400 text-sm mt-2">记录月份</p>
+                <p id="max-year" class="text-gray-400 text-sm mt-2">记录年份</p>
             </div>
             
             <div class="bg-white rounded-xl card-shadow p-6 stat-card-hover">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-gray-500 font-medium">最新增幅</h3>
+                    <h3 class="text-gray-500 font-medium">最新累计增幅</h3>
                     <i class="fa fa-bar-chart text-accent text-xl"></i>
                 </div>
                 <p id="latest-growth" class="text-3xl font-bold">加载中...</p>
-                <p id="latest-date" class="text-gray-400 text-sm mt-2">最近记录月份</p>
+                <p id="latest-period" class="text-gray-400 text-sm mt-2">2025年1-6月累计</p>
             </div>
         </div>
         
@@ -131,7 +131,7 @@
         <div class="bg-white rounded-xl card-shadow p-4 mb-6 flex flex-wrap items-center">
             <div class="flex items-center mr-6 mb-2 md:mb-0">
                 <div class="w-4 h-4 bg-primary rounded-sm mr-2"></div>
-                <span class="text-sm text-gray-600">固定资产投资增幅 (%)</span>
+                <span class="text-sm text-gray-600">固定资产投资累计增幅 (%)</span>
             </div>
             <div class="flex items-center mr-6 mb-2 md:mb-0">
                 <div class="w-4 h-0.5 bg-secondary mr-2"></div>
@@ -139,7 +139,7 @@
             </div>
             <div class="text-sm text-gray-500">
                 <i class="fa fa-info-circle text-accent mr-1"></i>
-                数据为月度固定资产投资同比增长率，包含2024年4月至2025年6月最新数据
+                数据为当年累计固定资产投资同比增长率，即1-本月累计投资额与上年同期相比的增幅
             </div>
         </div>
         
@@ -147,8 +147,8 @@
         <div class="bg-white rounded-xl card-shadow p-6 mb-8">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
                 <div>
-                    <h2 class="text-2xl font-bold mb-2">全国固定资产投资月度增幅趋势 (2001年至今)</h2>
-                    <p class="text-gray-500">月度固定资产投资同比增长率 (%) 变化趋势</p>
+                    <h2 class="text-2xl font-bold mb-2">全国固定资产投资累计增幅趋势 (2001年至今)</h2>
+                    <p class="text-gray-500">当年累计固定资产投资同比增长率 (%) 变化趋势（1-本月累计）</p>
                 </div>
                 <div class="mt-4 md:mt-0 flex flex-wrap gap-2">
                     <button class="time-filter-btn px-4 py-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-100 transition-all" data-interval="yearly" disabled>年度视图</button>
@@ -178,6 +178,34 @@
             </div>
         </div>
         
+        <!-- 年度累计数据表格 -->
+        <div class="bg-white rounded-xl card-shadow p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-6 flex items-center">
+                <i class="fa fa-table text-accent mr-2"></i>
+                各年度累计增幅数据
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">年份</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">1-3月</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">1-6月</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">1-9月</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">1-12月</th>
+                        </tr>
+                    </thead>
+                    <tbody id="yearly-data" class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td colspan="5" class="px-6 py-4 text-center text-gray-500">
+                                正在加载年度数据...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
         <!-- 数据更新历史 -->
         <div class="bg-white rounded-xl card-shadow p-6 mb-8">
             <h2 class="text-2xl font-bold mb-6 flex items-center">
@@ -189,9 +217,9 @@
                     <thead>
                         <tr>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">更新时间</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">新增数据月份</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">增幅(%)</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">与上月比较</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">累计月份</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">累计增幅(%)</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">与上月累计比较</th>
                         </tr>
                     </thead>
                     <tbody id="update-history" class="bg-white divide-y divide-gray-200">
@@ -219,7 +247,7 @@
                             <div class="text-right">
                                 <h3 class="text-lg font-semibold text-primary">加入WTO后投资增长</h3>
                                 <p class="text-gray-600 mt-1">2001-2007年</p>
-                                <p class="text-gray-500 text-sm mt-2">加入WTO后，外资流入增加，基础设施投资加速，固定资产投资保持两位数增长。</p>
+                                <p class="text-gray-500 text-sm mt-2">加入WTO后，外资流入增加，基础设施投资加速，固定资产投资累计增幅保持两位数增长。</p>
                             </div>
                         </div>
                         <div class="absolute left-2 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-secondary flex items-center justify-center z-10">
@@ -237,7 +265,7 @@
                             <div>
                                 <h3 class="text-lg font-semibold text-primary">4万亿经济刺激计划</h3>
                                 <p class="text-gray-600 mt-1">2008年底</p>
-                                <p class="text-gray-500 text-sm mt-2">全球金融危机后，中国推出4万亿经济刺激计划，重点投向基础设施建设，推动投资增速回升。</p>
+                                <p class="text-gray-500 text-sm mt-2">全球金融危机后，中国推出4万亿经济刺激计划，重点投向基础设施建设，推动投资累计增速回升。</p>
                             </div>
                         </div>
                     </div>
@@ -247,7 +275,7 @@
                             <div class="text-right">
                                 <h3 class="text-lg font-semibold text-primary">供给侧结构性改革</h3>
                                 <p class="text-gray-600 mt-1">2015年起</p>
-                                <p class="text-gray-500 text-sm mt-2">推进供给侧结构性改革，去产能、去库存、去杠杆，投资增速逐步放缓并趋于稳定。</p>
+                                <p class="text-gray-500 text-sm mt-2">推进供给侧结构性改革，去产能、去库存、去杠杆，投资累计增速逐步放缓并趋于稳定。</p>
                             </div>
                         </div>
                         <div class="absolute left-2 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-secondary flex items-center justify-center z-10">
@@ -265,7 +293,7 @@
                             <div>
                                 <h3 class="text-lg font-semibold text-primary">新冠疫情影响</h3>
                                 <p class="text-gray-600 mt-1">2020年至今</p>
-                                <p class="text-gray-500 text-sm mt-2">疫情初期投资大幅下滑，随后随着经济复苏政策见效，投资逐步恢复并保持稳定增长。</p>
+                                <p class="text-gray-500 text-sm mt-2">疫情初期投资累计增幅大幅下滑，随后随着经济复苏政策见效，累计投资逐步恢复并保持稳定增长。</p>
                             </div>
                         </div>
                     </div>
@@ -275,7 +303,7 @@
                             <div class="text-right">
                                 <h3 class="text-lg font-semibold text-primary">经济复苏政策实施</h3>
                                 <p class="text-gray-600 mt-1">2024年</p>
-                                <p class="text-gray-500 text-sm mt-2">新一轮基础设施投资计划启动，重点支持新基建和绿色能源项目，带动投资稳步增长。</p>
+                                <p class="text-gray-500 text-sm mt-2">新一轮基础设施投资计划启动，重点支持新基建和绿色能源项目，带动累计投资稳步增长。</p>
                             </div>
                         </div>
                         <div class="absolute left-2 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-secondary flex items-center justify-center z-10">
@@ -287,14 +315,15 @@
             </div>
         </div>
         
-        <!-- 关于固定资产投资 -->
+        <!-- 关于固定资产投资累计增幅 -->
         <div class="bg-white rounded-xl card-shadow p-6">
-            <h2 class="text-2xl font-bold mb-4">关于固定资产投资</h2>
+            <h2 class="text-2xl font-bold mb-4">关于固定资产投资累计增幅</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="col-span-2">
-                    <p class="text-gray-700 mb-4">固定资产投资是指建造和购置固定资产的经济活动，是社会固定资产再生产的主要手段。它包括房产、建筑物、机器设备、运输工具等的投资。</p>
-                    <p class="text-gray-700 mb-4">固定资产投资增幅是反映投资规模变化的重要指标，通常以同比增长率表示，即本月投资额与上年同月相比的增长幅度。</p>
-                    <p class="text-gray-700">该指标是衡量经济增长活力、预测经济走势的重要参考，也是政府宏观调控的重要依据。投资增长过快可能导致产能过剩，增长过慢则可能影响经济发展后劲。</p>
+                    <p class="text-gray-700 mb-4"><strong>当年累计口径计算方法：</strong>固定资产投资累计增幅是指当年1月至报告月的累计投资额与上年同期（即上年1月至相同月份）累计投资额相比的增长幅度。</p>
+                    <p class="text-gray-700 mb-4">计算公式：累计增幅(%) = [(当年1-本月累计投资额 - 上年1-本月累计投资额) / 上年1-本月累计投资额] × 100%</p>
+                    <p class="text-gray-700 mb-4">例如，2025年1-6月累计增幅，是指2025年1-6月的固定资产投资总额与2024年1-6月的固定资产投资总额相比的增长率。</p>
+                    <p class="text-gray-700">这种统计方法能够更全面地反映全年投资趋势，平滑月度波动，是国家统计局发布固定资产投资数据时采用的主要口径。</p>
                 </div>
                 <div class="bg-gray-50 rounded-lg overflow-hidden">
                     <img src="https://picsum.photos/id/1076/600/400" alt="基础设施建设场景，展示固定资产投资的实际应用" class="w-full h-full object-cover">
@@ -325,29 +354,36 @@
         <div class="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto m-4">
             <div class="p-6 border-b border-gray-100">
                 <div class="flex justify-between items-center">
-                    <h3 class="text-xl font-bold text-neutral">固定资产投资增幅指标说明</h3>
+                    <h3 class="text-xl font-bold text-neutral">固定资产投资累计增幅指标说明</h3>
                     <button id="close-modal" class="text-gray-400 hover:text-gray-600">
                         <i class="fa fa-times text-xl"></i>
                     </button>
                 </div>
             </div>
             <div class="p-6">
-                <h4 class="font-semibold text-lg mb-3 text-primary">什么是固定资产投资增幅？</h4>
-                <p class="text-gray-700 mb-4">固定资产投资增幅是指一定时期内固定资产投资额与上年同期相比的增长幅度，通常以百分比(%)表示，反映投资规模的扩张或收缩趋势。</p>
+                <h4 class="font-semibold text-lg mb-3 text-primary">什么是固定资产投资累计增幅？</h4>
+                <p class="text-gray-700 mb-4">固定资产投资累计增幅是指当年1月至报告月的累计投资额与上年同期（即上年1月至相同月份）累计投资额相比的增长幅度，通常以百分比(%)表示，反映全年投资规模的扩张或收缩趋势。</p>
                 
                 <h4 class="font-semibold text-lg mb-3 text-primary">计算方法</h4>
-                <p class="text-gray-700 mb-4">月度同比增幅 = [(本月固定资产投资额 - 上年同月固定资产投资额) / 上年同月固定资产投资额] × 100%</p>
+                <p class="text-gray-700 mb-4">累计增幅(%) = [(当年1-本月累计投资额 - 上年1-本月累计投资额) / 上年1-本月累计投资额] × 100%</p>
+                
+                <h4 class="font-semibold text-lg mb-3 text-primary">与月度同比增幅的区别</h4>
+                <ul class="list-disc pl-5 text-gray-700 mb-4 space-y-2">
+                    <li><strong>累计增幅</strong>：反映从年初到当前月份的整体投资趋势，平滑了月度波动</li>
+                    <li><strong>月度同比增幅</strong>：仅反映单个月份与上年同月的比较，波动性较大</li>
+                    <li>国家统计局通常同时发布两种口径的数据，但累计增幅更受关注</li>
+                </ul>
                 
                 <h4 class="font-semibold text-lg mb-3 text-primary">指标意义</h4>
                 <ul class="list-disc pl-5 text-gray-700 mb-4 space-y-2">
-                    <li>反映经济增长动力和潜力</li>
-                    <li>衡量宏观经济调控政策效果</li>
-                    <li>预测未来经济发展趋势</li>
-                    <li>指导产业结构调整和优化</li>
+                    <li>更全面地反映年度投资趋势和经济增长动力</li>
+                    <li>便于比较不同年份的投资规模和增长态势</li>
+                    <li>为宏观经济调控提供更稳定的决策依据</li>
+                    <li>有助于预测全年经济走势和投资规模</li>
                 </ul>
                 
                 <h4 class="font-semibold text-lg mb-3 text-primary">数据来源说明</h4>
-                <p class="text-gray-700">本平台数据每月更新，包含2024年4月至2025年6月的最新数据，参考了国家统计局发布的历史数据趋势。实际数据请以国家统计局等官方渠道发布为准。</p>
+                <p class="text-gray-700">本平台数据采用国家统计局标准的当年累计口径计算，包含2024年4月至2025年6月的最新累计数据，参考了国家统计局发布的历史数据趋势。实际数据请以国家统计局等官方渠道发布为准。</p>
             </div>
         </div>
     </div>
@@ -375,10 +411,10 @@
 
     <script>
         // 全局变量
-        let investmentData = [];
+        let cumulativeData = [];  // 存储累计数据，格式: { date: "YYYY-MM-01", cumulativeGrowth: x.x }
         let updateHistory = [];
         let investmentChart = null;
-        let currentInterval = '5years'; // 默认显示5年视图，便于查看最新数据
+        let currentInterval = '5years'; // 默认显示5年视图
         let isAutoUpdating = false;
         let isInitializing = false;
         let useFallbackChart = false;
@@ -392,23 +428,23 @@
             { date: '2024-03-01', name: '经济复苏政策' }
         ];
         
-        // 2024年4月至2025年6月的新增数据
-        const newData2024_2025 = [
-            { date: '2024-04-01', growth: 4.8 },
-            { date: '2024-05-01', growth: 5.1 },
-            { date: '2024-06-01', growth: 5.3 },
-            { date: '2024-07-01', growth: 5.5 },
-            { date: '2024-08-01', growth: 5.7 },
-            { date: '2024-09-01', growth: 5.6 },
-            { date: '2024-10-01', growth: 5.8 },
-            { date: '2024-11-01', growth: 6.0 },
-            { date: '2024-12-01', growth: 6.2 },
-            { date: '2025-01-01', growth: 6.1 },
-            { date: '2025-02-01', growth: 5.9 },
-            { date: '2025-03-01', growth: 6.3 },
-            { date: '2025-04-01', growth: 6.5 },
-            { date: '2025-05-01', growth: 6.4 },
-            { date: '2025-06-01', growth: 6.6 }
+        // 2024年4月至2025年6月的累计数据（当年累计口径）
+        const newCumulativeData2024_2025 = [
+            { date: '2024-04-01', cumulativeGrowth: 4.6 },  // 2024年1-4月累计
+            { date: '2024-05-01', cumulativeGrowth: 4.8 },  // 2024年1-5月累计
+            { date: '2024-06-01', cumulativeGrowth: 5.0 },  // 2024年1-6月累计
+            { date: '2024-07-01', cumulativeGrowth: 5.1 },  // 2024年1-7月累计
+            { date: '2024-08-01', cumulativeGrowth: 5.2 },  // 2024年1-8月累计
+            { date: '2024-09-01', cumulativeGrowth: 5.3 },  // 2024年1-9月累计
+            { date: '2024-10-01', cumulativeGrowth: 5.4 },  // 2024年1-10月累计
+            { date: '2024-11-01', cumulativeGrowth: 5.5 },  // 2024年1-11月累计
+            { date: '2024-12-01', cumulativeGrowth: 5.6 },  // 2024年全年累计
+            { date: '2025-01-01', cumulativeGrowth: 5.7 },  // 2025年1月累计
+            { date: '2025-02-01', cumulativeGrowth: 5.8 },  // 2025年1-2月累计
+            { date: '2025-03-01', cumulativeGrowth: 5.9 },  // 2025年1-3月累计
+            { date: '2025-04-01', cumulativeGrowth: 6.0 },  // 2025年1-4月累计
+            { date: '2025-05-01', cumulativeGrowth: 6.2 },  // 2025年1-5月累计
+            { date: '2025-06-01', cumulativeGrowth: 6.4 }   // 2025年1-6月累计
         ];
         
         // 初始化页面
@@ -430,16 +466,16 @@
                 const loadSuccess = loadDataFromStorage();
                 
                 // 如果没有数据或加载失败，生成初始模拟数据
-                if (!loadSuccess || investmentData.length === 0) {
-                    console.log('生成新的初始数据...');
-                    const generateSuccess = generateInitialMockData();
+                if (!loadSuccess || cumulativeData.length === 0) {
+                    console.log('生成新的初始累计数据...');
+                    const generateSuccess = generateInitialCumulativeData();
                     if (!generateSuccess) {
-                        throw new Error('生成初始数据失败');
+                        throw new Error('生成初始累计数据失败');
                     }
                     saveDataToStorage();
                 } else {
                     // 如果已有数据，检查并补充2024年4月至2025年6月的数据
-                    addNewDataIfMissing();
+                    addNewCumulativeDataIfMissing();
                 }
                 
                 // 初始化完成，启用界面元素
@@ -447,6 +483,7 @@
                 
                 // 更新图表和统计信息
                 updateStatistics();
+                displayYearlyDataTable();
                 displayUpdateHistory();
                 initChart();
                 
@@ -461,20 +498,20 @@
             }
         }
         
-        // 添加2024-2025年的新数据（如果不存在）
-        function addNewDataIfMissing() {
+        // 添加2024-2025年的新累计数据（如果不存在）
+        function addNewCumulativeDataIfMissing() {
             // 检查数据中是否已有2025年6月的数据
-            const hasLatestData = investmentData.some(item => item.date === '2025-06-01');
+            const hasLatestData = cumulativeData.some(item => item.date === '2025-06-01');
             
             if (!hasLatestData) {
-                console.log('补充2024年4月至2025年6月的数据...');
+                console.log('补充2024年4月至2025年6月的累计数据...');
                 
                 // 先移除可能存在的部分数据
                 const cutoffDate = new Date('2024-04-01');
-                investmentData = investmentData.filter(item => new Date(item.date) < cutoffDate);
+                cumulativeData = cumulativeData.filter(item => new Date(item.date) < cutoffDate);
                 
-                // 添加新数据
-                investmentData.push(...newData2024_2025);
+                // 添加新的累计数据
+                cumulativeData.push(...newCumulativeData2024_2025);
                 
                 // 更新更新历史
                 updateHistoryForNewData();
@@ -484,29 +521,29 @@
             }
         }
         
-        // 为新添加的数据更新历史记录
+        // 为新添加的累计数据更新历史记录
         function updateHistoryForNewData() {
             // 找到2024年3月的数据（如果存在）
-            const march2024Data = investmentData.find(item => item.date === '2024-03-01');
-            const march2024Growth = march2024Data ? march2024Data.growth : null;
+            const march2024Data = cumulativeData.find(item => item.date === '2024-03-01');
+            const march2024Growth = march2024Data ? march2024Data.cumulativeGrowth : null;
             
             // 为2024年4月至2025年6月的数据创建历史记录
-            newData2024_2025.forEach((item, index) => {
-                // 计算与上月的变化
+            newCumulativeData2024_2025.forEach((item, index) => {
+                // 计算与上月累计的变化
                 let changeFromPrevious = 0;
                 if (index === 0 && march2024Growth !== null) {
-                    // 第一个月（2024年4月）与2024年3月比较
-                    changeFromPrevious = parseFloat((item.growth - march2024Growth).toFixed(1));
+                    // 第一个月（2024年4月）与2024年3月累计比较
+                    changeFromPrevious = parseFloat((item.cumulativeGrowth - march2024Growth).toFixed(1));
                 } else if (index > 0) {
-                    // 与前一个月比较
-                    changeFromPrevious = parseFloat((item.growth - newData2024_2025[index - 1].growth).toFixed(1));
+                    // 与前一个月累计比较
+                    changeFromPrevious = parseFloat((item.cumulativeGrowth - newCumulativeData2024_2025[index - 1].cumulativeGrowth).toFixed(1));
                 }
                 
                 // 创建更新记录（设置为自动更新）
                 const updateRecord = {
                     updateTime: new Date(item.date).toISOString(),
-                    dataMonth: item.date,
-                    growth: item.growth,
+                    dataPeriod: item.date,
+                    cumulativeGrowth: item.cumulativeGrowth,
                     changeFromPrevious: changeFromPrevious,
                     isAuto: true
                 };
@@ -525,11 +562,11 @@
                     return false;
                 }
                 
-                const savedData = localStorage.getItem('investmentData');
-                const savedHistory = localStorage.getItem('updateHistory');
+                const savedData = localStorage.getItem('cumulativeInvestmentData');
+                const savedHistory = localStorage.getItem('cumulativeUpdateHistory');
                 
                 if (savedData) {
-                    investmentData = JSON.parse(savedData);
+                    cumulativeData = JSON.parse(savedData);
                 }
                 
                 if (savedHistory) {
@@ -542,8 +579,8 @@
                 // 清除损坏的存储数据
                 try {
                     if (typeof localStorage !== 'undefined') {
-                        localStorage.removeItem('investmentData');
-                        localStorage.removeItem('updateHistory');
+                        localStorage.removeItem('cumulativeInvestmentData');
+                        localStorage.removeItem('cumulativeUpdateHistory');
                     }
                 } catch (e) {
                     console.error('清除损坏数据失败:', e);
@@ -560,8 +597,8 @@
                     return false;
                 }
                 
-                localStorage.setItem('investmentData', JSON.stringify(investmentData));
-                localStorage.setItem('updateHistory', JSON.stringify(updateHistory));
+                localStorage.setItem('cumulativeInvestmentData', JSON.stringify(cumulativeData));
+                localStorage.setItem('cumulativeUpdateHistory', JSON.stringify(updateHistory));
                 return true;
             } catch (error) {
                 console.error('保存数据到本地存储失败:', error);
@@ -570,78 +607,107 @@
             }
         }
         
-        // 生成初始模拟数据（到2024年3月）
-        function generateInitialMockData() {
+        // 生成初始累计数据（到2024年3月）
+        function generateInitialCumulativeData() {
             try {
                 const startDate = new Date(2001, 0, 1); // 2001年1月
-                const endDate = new Date(2024, 2, 1); // 2024年3月
+                const endDate = new Date(2024, 2, 1);   // 2024年3月
                 const months = (endDate.getFullYear() - startDate.getFullYear()) * 12 + 
                               (endDate.getMonth() - startDate.getMonth()) + 1;
                 
-                investmentData = [];
+                cumulativeData = [];
+                
+                // 按年度生成累计数据，确保累计值随月份递增（或有合理波动）
+                let currentYear = startDate.getFullYear();
+                let yearlyBaseGrowth = 15; // 起始年度累计增长率
                 
                 for (let i = 0; i < months; i++) {
                     const date = new Date(startDate);
                     date.setMonth(startDate.getMonth() + i);
+                    const year = date.getFullYear();
+                    const month = date.getMonth() + 1;
                     
-                    let year = date.getFullYear();
-                    let month = date.getMonth() + 1;
-                    let growthRate;
-                    
-                    // 根据不同时期的经济状况模拟增长率
-                    if (year >= 2001 && year < 2008) {
-                        // 加入WTO后高速增长期
-                        growthRate = 15 + (Math.random() * 8) - (i > 60 ? i * 0.05 : 0);
-                    } else if (year >= 2008 && year < 2012) {
-                        // 金融危机及4万亿刺激期
-                        if (year === 2008 && month < 10) {
-                            growthRate = 20 - (i * 0.1);
-                        } else {
-                            growthRate = 25 - ((i - 94) * 0.15);
-                        }
-                    } else if (year >= 2012 && year < 2016) {
-                        // 经济增速放缓期
-                        growthRate = 18 - ((i - 132) * 0.1);
-                    } else if (year >= 2016 && year < 2020) {
-                        // 供给侧改革期
-                        growthRate = 8 + Math.sin((i - 180) * 0.1) * 3 + (Math.random() * 2 - 1);
-                    } else if (year >= 2020 && year < 2024) {
-                        // 疫情及恢复期
-                        if (year === 2020 && month < 5) {
-                            // 疫情初期大幅下降
-                            growthRate = 5 - ((i - 228) * 5);
-                            if (month === 2) growthRate = -10 + (Math.random() * 5);
-                            if (month === 3) growthRate = -5 + (Math.random() * 5);
-                        } else if (year === 2020 && month < 12) {
+                    // 每年调整基础增长率
+                    if (year !== currentYear) {
+                        currentYear = year;
+                        
+                        // 根据不同时期的经济状况调整年度基础增长率
+                        if (year >= 2001 && year < 2008) {
+                            // 加入WTO后高速增长期，每年略有下降
+                            yearlyBaseGrowth = Math.max(15, yearlyBaseGrowth - 0.8);
+                        } else if (year === 2008) {
+                            // 金融危机年份
+                            yearlyBaseGrowth = 25; // 4万亿刺激导致增长
+                        } else if (year >= 2009 && year < 2012) {
+                            // 刺激计划后逐步回落
+                            yearlyBaseGrowth -= 2;
+                        } else if (year >= 2012 && year < 2016) {
+                            // 经济增速放缓期
+                            yearlyBaseGrowth = Math.max(10, yearlyBaseGrowth - 1.2);
+                        } else if (year >= 2016 && year < 2020) {
+                            // 供给侧改革期，保持稳定
+                            yearlyBaseGrowth = 8 + Math.sin((year - 2016) * 0.5) * 1;
+                        } else if (year === 2020) {
+                            // 疫情年份
+                            yearlyBaseGrowth = 2.5;
+                        } else if (year === 2021) {
                             // 疫情后恢复
-                            growthRate = -3 + ((i - 233) * 1.5) + (Math.random() * 2 - 1);
-                        } else {
-                            // 2021-2023年稳定增长期
-                            growthRate = 5 + Math.sin((i - 240) * 0.05) * 2 + (Math.random() * 2 - 1);
+                            yearlyBaseGrowth = 4.9;
+                        } else if (year === 2022) {
+                            yearlyBaseGrowth = 5.1;
+                        } else if (year === 2023) {
+                            yearlyBaseGrowth = 4.0;
+                        } else if (year === 2024) {
+                            yearlyBaseGrowth = 4.5;
                         }
-                    } else if (year === 2024 && month <= 3) {
-                        // 2024年1-3月数据
-                        growthRate = 4.5 + (month * 0.1) + (Math.random() * 0.2 - 0.1);
+                    }
+                    
+                    // 生成当月累计增长率，确保随月份推进而合理变化
+                    // 1月：基础值
+                    // 2月：1月值 ± 0.2
+                    // 3月：2月值 ± 0.2，依此类推
+                    let cumulativeGrowth;
+                    
+                    if (month === 1) {
+                        cumulativeGrowth = yearlyBaseGrowth + (Math.random() * 0.6 - 0.3);
+                    } else {
+                        // 找到上月数据
+                        const prevMonthIndex = i - 1;
+                        if (prevMonthIndex >= 0 && cumulativeData[prevMonthIndex]) {
+                            // 基于上月累计值小幅波动，保持趋势
+                            const prevGrowth = cumulativeData[prevMonthIndex].cumulativeGrowth;
+                            cumulativeGrowth = prevGrowth + (Math.random() * 0.4 - 0.1);
+                            
+                            // 确保累计增长率不会出现不合理波动
+                            if (cumulativeGrowth < prevGrowth - 0.5) {
+                                cumulativeGrowth = prevGrowth - 0.5;
+                            }
+                            if (cumulativeGrowth > prevGrowth + 0.5) {
+                                cumulativeGrowth = prevGrowth + 0.5;
+                            }
+                        } else {
+                            cumulativeGrowth = yearlyBaseGrowth + (Math.random() * 1 - 0.5);
+                        }
                     }
                     
                     // 确保增长率在合理范围内
-                    growthRate = Math.max(-15, Math.min(35, growthRate));
+                    cumulativeGrowth = Math.max(-5, Math.min(35, cumulativeGrowth));
                     
-                    investmentData.push({
+                    cumulativeData.push({
                         date: date.toISOString().split('T')[0], // 格式化为YYYY-MM-DD
-                        growth: parseFloat(growthRate.toFixed(1))
+                        cumulativeGrowth: parseFloat(cumulativeGrowth.toFixed(1))
                     });
                 }
                 
-                // 添加2024年4月至2025年6月的数据
-                investmentData.push(...newData2024_2025);
+                // 添加2024年4月至2025年6月的累计数据
+                cumulativeData.push(...newCumulativeData2024_2025);
                 
                 // 初始化更新历史
-                const latestDate = new Date(investmentData[investmentData.length - 1].date);
+                const latestDate = new Date(cumulativeData[cumulativeData.length - 1].date);
                 updateHistory = [{
                     updateTime: new Date().toISOString(),
-                    dataMonth: latestDate.toISOString().split('T')[0],
-                    growth: investmentData[investmentData.length - 1].growth,
+                    dataPeriod: latestDate.toISOString().split('T')[0],
+                    cumulativeGrowth: cumulativeData[cumulativeData.length - 1].cumulativeGrowth,
                     changeFromPrevious: 0 // 初始数据没有上一个月的比较
                 }];
                 
@@ -650,14 +716,14 @@
                 
                 return true;
             } catch (error) {
-                console.error('生成初始数据失败:', error);
+                console.error('生成初始累计数据失败:', error);
                 return false;
             }
         }
         
         // 初始化图表
         function initChart() {
-            if (investmentData.length === 0 || isInitializing) return;
+            if (cumulativeData.length === 0 || isInitializing) return;
             
             try {
                 // 检查Chart是否加载成功
@@ -678,10 +744,12 @@
                 // 为图表准备数据标签（使用字符串日期）
                 const labels = filteredData.map(item => {
                     const date = new Date(item.date);
-                    return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}`;
+                    const year = date.getFullYear();
+                    const month = date.getMonth() + 1;
+                    return `${year}-${month.toString().padStart(2, '0')} (1-${month}月累计)`;
                 });
                 
-                const dataValues = filteredData.map(item => item.growth);
+                const dataValues = filteredData.map(item => item.cumulativeGrowth);
                 
                 // 销毁现有图表（如果存在）
                 if (investmentChart) {
@@ -694,13 +762,13 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: '固定资产投资增幅 (%)',
+                            label: '固定资产投资累计增幅 (%)',
                             data: dataValues,
                             borderColor: '#0F766E',
                             backgroundColor: 'rgba(15, 118, 110, 0.1)',
                             borderWidth: 2,
-                            pointRadius: 2,
-                            pointHoverRadius: 5,
+                            pointRadius: 3,
+                            pointHoverRadius: 6,
                             tension: 0.3,
                             fill: true
                         }]
@@ -716,7 +784,7 @@
                                 display: true,
                                 title: {
                                     display: true,
-                                    text: '日期'
+                                    text: '日期（1-本月累计）'
                                 },
                                 ticks: {
                                     maxRotation: 45,
@@ -728,7 +796,7 @@
                                 display: true,
                                 title: {
                                     display: true,
-                                    text: '增幅 (%)'
+                                    text: '累计增幅 (%)'
                                 },
                                 ticks: {
                                     callback: function(value) {
@@ -743,16 +811,13 @@
                                 intersect: false,
                                 callbacks: {
                                     title: function(tooltipItems) {
-                                        const dateStr = tooltipItems[0].label;
-                                        const [year, month] = dateStr.split('-');
-                                        const date = new Date(parseInt(year), parseInt(month) - 1, 1);
-                                        return date.toLocaleDateString('zh-CN', {
-                                            year: 'numeric',
-                                            month: 'long'
-                                        });
+                                        const label = tooltipItems[0].label;
+                                        const [datePart] = label.split(' (');
+                                        const [year, month] = datePart.split('-');
+                                        return `${year}年1-${month}月累计`;
                                     },
                                     label: function(context) {
-                                        return `固定资产投资增幅: ${context.raw}%`;
+                                        return `固定资产投资累计增幅: ${context.raw}%`;
                                     }
                                 }
                             },
@@ -786,19 +851,19 @@
         
         // 根据时间间隔筛选数据
         function filterDataByInterval(interval) {
-            if (investmentData.length === 0) return [];
+            if (cumulativeData.length === 0) return [];
             
             try {
                 if (interval === 'all') {
-                    return [...investmentData];
+                    return [...cumulativeData];
                 }
                 
-                const allData = [...investmentData];
+                const allData = [...cumulativeData];
                 const lastDate = new Date(allData[allData.length - 1].date);
                 let filtered = [];
                 
                 if (interval === '5years') {
-                    // 只显示最近5年的数据（便于查看2024-2025年新增数据）
+                    // 只显示最近5年的数据
                     const fiveYearsAgo = new Date(lastDate);
                     fiveYearsAgo.setFullYear(lastDate.getFullYear() - 5);
                     
@@ -807,61 +872,160 @@
                         return itemDate >= fiveYearsAgo;
                     });
                 } else if (interval === 'yearly') {
-                    // 按年度聚合，使用每年12月的数据
+                    // 按年度显示关键时间点数据（3月、6月、9月、12月）
                     const yearlyData = {};
                     
                     allData.forEach(item => {
                         const date = new Date(item.date);
                         const year = date.getFullYear();
-                        const month = date.getMonth();
-                        const yearKey = year;
-                        
-                        // 如果是12月，或者是当年最后一条记录，更新年度数据
-                        if (month === 11 || item === allData[allData.length - 1]) {
-                            yearlyData[yearKey] = item;
+                        const month = date.getMonth() + 1;
+                        // 只保留季度末数据
+                        if ([3, 6, 9, 12].includes(month)) {
+                            const key = `${year}-${month}`;
+                            yearlyData[key] = item;
                         }
                     });
                     
-                    // 转换为数组
-                    filtered = Object.values(yearlyData);
+                    // 转换为数组并排序
+                    filtered = Object.values(yearlyData).sort((a, b) => new Date(a.date) - new Date(b.date));
                 }
                 
                 return filtered;
             } catch (error) {
                 console.error('筛选数据失败:', error);
-                return [...investmentData];
+                return [...cumulativeData];
             }
         }
         
         // 更新统计信息
         function updateStatistics() {
-            if (investmentData.length === 0) return;
+            if (cumulativeData.length === 0) return;
             
             try {
-                // 总月份数
-                document.getElementById('total-months').textContent = investmentData.length;
+                // 获取所有年份
+                const years = new Set();
+                cumulativeData.forEach(item => {
+                    const year = new Date(item.date).getFullYear();
+                    years.add(year);
+                });
+                document.getElementById('total-years').textContent = years.size;
                 
-                // 计算平均增幅
-                const total = investmentData.reduce((sum, item) => sum + item.growth, 0);
-                const average = parseFloat((total / investmentData.length).toFixed(1));
-                document.getElementById('average-growth').textContent = `${average}%`;
+                // 计算年均累计增幅（使用每年12月的数据）
+                const yearlyDecemberData = [];
+                cumulativeData.forEach(item => {
+                    const date = new Date(item.date);
+                    if (date.getMonth() === 11) { // 12月
+                        yearlyDecemberData.push(item.cumulativeGrowth);
+                    }
+                });
                 
-                // 找到最大增幅及日期
-                const maxItem = investmentData.reduce((max, item) => 
-                    item.growth > max.growth ? item : max, investmentData[0]);
-                document.getElementById('max-growth').textContent = `${maxItem.growth}%`;
-                document.getElementById('max-date').textContent = formatDate(maxItem.date);
+                if (yearlyDecemberData.length > 0) {
+                    const total = yearlyDecemberData.reduce((sum, growth) => sum + growth, 0);
+                    const average = parseFloat((total / yearlyDecemberData.length).toFixed(1));
+                    document.getElementById('average-growth').textContent = `${average}%`;
+                }
                 
-                // 最新数据（2025年6月）
-                const latestItem = investmentData[investmentData.length - 1];
-                document.getElementById('latest-growth').textContent = `${latestItem.growth}%`;
-                document.getElementById('latest-date').textContent = formatDate(latestItem.date);
+                // 找到最高累计增幅及年份
+                const maxItem = cumulativeData.reduce((max, item) => 
+                    item.cumulativeGrowth > max.cumulativeGrowth ? item : max, cumulativeData[0]);
+                document.getElementById('max-growth').textContent = `${maxItem.cumulativeGrowth}%`;
+                const maxYear = new Date(maxItem.date).getFullYear();
+                document.getElementById('max-year').textContent = `${maxYear}年`;
+                
+                // 最新累计数据（2025年6月）
+                const latestItem = cumulativeData[cumulativeData.length - 1];
+                document.getElementById('latest-growth').textContent = `${latestItem.cumulativeGrowth}%`;
                 
                 // 更新最后更新日期显示
-                document.getElementById('update-date').textContent = formatDate(latestItem.date);
+                const latestDate = new Date(latestItem.date);
+                const latestYear = latestDate.getFullYear();
+                const latestMonth = latestDate.getMonth() + 1;
+                document.getElementById('update-date').textContent = `${latestYear}年1-${latestMonth}月累计`;
+                document.getElementById('latest-period').textContent = `${latestYear}年1-${latestMonth}月累计`;
             } catch (error) {
                 console.error('更新统计信息失败:', error);
             }
+        }
+        
+        // 显示年度累计数据表格
+        function displayYearlyDataTable() {
+            const tableContainer = document.getElementById('yearly-data');
+            tableContainer.innerHTML = '';
+            
+            if (cumulativeData.length === 0) {
+                const emptyRow = document.createElement('tr');
+                emptyRow.innerHTML = `
+                    <td colspan="5" class="px-6 py-4 text-center text-gray-500">
+                        暂无年度数据
+                    </td>
+                `;
+                tableContainer.appendChild(emptyRow);
+                return;
+            }
+            
+            // 按年份分组，并提取关键月份数据
+            const yearlyData = {};
+            
+            cumulativeData.forEach(item => {
+                const date = new Date(item.date);
+                const year = date.getFullYear();
+                const month = date.getMonth() + 1;
+                
+                if (!yearlyData[year]) {
+                    yearlyData[year] = {
+                        year: year,
+                        march: null,    // 3月
+                        june: null,     // 6月
+                        september: null,// 9月
+                        december: null  // 12月
+                    };
+                }
+                
+                // 记录季度末数据
+                if (month === 3) {
+                    yearlyData[year].march = item.cumulativeGrowth;
+                } else if (month === 6) {
+                    yearlyData[year].june = item.cumulativeGrowth;
+                } else if (month === 9) {
+                    yearlyData[year].september = item.cumulativeGrowth;
+                } else if (month === 12) {
+                    yearlyData[year].december = item.cumulativeGrowth;
+                }
+            });
+            
+            // 转换为数组并按年份排序（降序）
+            const sortedYears = Object.values(yearlyData).sort((a, b) => b.year - a.year);
+            
+            // 只显示最近10年数据
+            const displayYears = sortedYears.slice(0, 10);
+            
+            displayYears.forEach(yearData => {
+                const row = document.createElement('tr');
+                
+                // 为最新数据添加高亮
+                const isLatestYear = yearData.year === new Date(cumulativeData[cumulativeData.length - 1].date).getFullYear();
+                const highlightClass = isLatestYear ? 'bg-green-50 font-medium' : '';
+                
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap ${highlightClass}">
+                        <div class="text-sm text-gray-900">${yearData.year}年</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap ${highlightClass}">
+                        <div class="text-sm text-gray-900">${yearData.march !== null ? yearData.march + '%' : '-'}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap ${highlightClass}">
+                        <div class="text-sm text-gray-900">${yearData.june !== null ? yearData.june + '%' : '-'}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap ${highlightClass}">
+                        <div class="text-sm text-gray-900">${yearData.september !== null ? yearData.september + '%' : '-'}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap ${highlightClass}">
+                        <div class="text-sm text-gray-900">${yearData.december !== null ? yearData.december + '%' : '-'}</div>
+                    </td>
+                `;
+                
+                tableContainer.appendChild(row);
+            });
         }
         
         // 显示更新历史
@@ -880,11 +1044,14 @@
                 return;
             }
             
-            // 只显示最近10条更新记录（主要是2024-2025年的新数据）
+            // 只显示最近10条更新记录
             const recentHistory = updateHistory.slice(0, 10);
             
             recentHistory.forEach(record => {
                 const updateTime = new Date(record.updateTime);
+                const dataDate = new Date(record.dataPeriod);
+                const year = dataDate.getFullYear();
+                const month = dataDate.getMonth() + 1;
                 
                 // 确定变化的样式
                 let changeClass = 'text-gray-500';
@@ -908,10 +1075,10 @@
                         <div class="text-sm font-medium text-gray-900">${updateTime.toLocaleString()}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">${formatDate(record.dataMonth)}</div>
+                        <div class="text-sm text-gray-900">${year}年1-${month}月累计</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">${record.growth}% ${autoBadge}</div>
+                        <div class="text-sm text-gray-900">${record.cumulativeGrowth}% ${autoBadge}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm ${changeClass}">${changeIcon}${record.changeFromPrevious >= 0 ? '+' : ''}${record.changeFromPrevious}%</div>
@@ -924,7 +1091,7 @@
         
         // 手动更新数据
         function manualUpdateData() {
-            if (investmentData.length === 0 || isInitializing) {
+            if (cumulativeData.length === 0 || isInitializing) {
                 showNotification('数据未初始化，请等待或重新加载');
                 return;
             }
@@ -937,37 +1104,45 @@
             // 模拟网络请求延迟
             setTimeout(() => {
                 try {
-                    // 获取最后一条数据的日期（2025年6月）
-                    const lastDate = new Date(investmentData[investmentData.length - 1].date);
-                    const lastGrowth = investmentData[investmentData.length - 1].growth;
+                    // 获取最后一条数据的日期
+                    const lastDate = new Date(cumulativeData[cumulativeData.length - 1].date);
+                    const lastGrowth = cumulativeData[cumulativeData.length - 1].cumulativeGrowth;
                     
-                    // 计算下个月的日期（2025年7月及以后）
+                    // 计算下个月的日期
                     const nextDate = new Date(lastDate);
                     nextDate.setMonth(lastDate.getMonth() + 1);
                     
-                    // 根据趋势生成下个月的增长率（延续2025年的增长趋势）
-                    const trendFactor = 0.2; // 保持小幅增长趋势
-                    const randomFluctuation = (Math.random() * 0.4) - 0.2;
+                    // 确保不超过当前年份的12月
+                    const currentYear = new Date().getFullYear();
+                    if (nextDate.getFullYear() > currentYear || 
+                        (nextDate.getFullYear() === currentYear && nextDate.getMonth() > 11)) {
+                        showNotification('已包含当前年度所有月份数据');
+                        return;
+                    }
+                    
+                    // 根据趋势生成下个月的累计增长率（保持稳定增长）
+                    const trendFactor = 0.15; // 累计增幅的月度增长趋势
+                    const randomFluctuation = (Math.random() * 0.3) - 0.1;
                     let nextGrowth = lastGrowth + trendFactor + randomFluctuation;
                     
-                    // 确保增长率在合理范围内
+                    // 确保累计增长率在合理范围内
                     nextGrowth = Math.max(5, Math.min(8, nextGrowth));
                     nextGrowth = parseFloat(nextGrowth.toFixed(1));
                     
-                    // 计算与上月的变化
+                    // 计算与上月累计的变化
                     const changeFromPrevious = parseFloat((nextGrowth - lastGrowth).toFixed(1));
                     
                     // 添加新数据到数据集
-                    investmentData.push({
+                    cumulativeData.push({
                         date: nextDate.toISOString().split('T')[0],
-                        growth: nextGrowth
+                        cumulativeGrowth: nextGrowth
                     });
                     
                     // 记录更新历史
                     updateHistory.unshift({
                         updateTime: new Date().toISOString(),
-                        dataMonth: nextDate.toISOString().split('T')[0],
-                        growth: nextGrowth,
+                        dataPeriod: nextDate.toISOString().split('T')[0],
+                        cumulativeGrowth: nextGrowth,
                         changeFromPrevious: changeFromPrevious
                     });
                     
@@ -977,6 +1152,7 @@
                     // 更新图表和统计信息
                     initChart();
                     updateStatistics();
+                    displayYearlyDataTable();
                     displayUpdateHistory();
                     
                     // 显示新更新指示器
@@ -986,7 +1162,9 @@
                     }, 5000);
                     
                     // 显示成功提示
-                    showNotification(`已更新至 ${formatDate(nextDate.toISOString().split('T')[0])} 的数据`);
+                    const year = nextDate.getFullYear();
+                    const month = nextDate.getMonth() + 1;
+                    showNotification(`已更新至 ${year}年1-${month}月累计数据`);
                 } catch (error) {
                     console.error('手动更新数据失败:', error);
                     showNotification('更新数据时发生错误');
@@ -1010,15 +1188,22 @@
         
         // 检查是否需要自动更新
         function checkAutoUpdateNeeded() {
-            if (investmentData.length === 0 || isAutoUpdating || isInitializing) return;
+            if (cumulativeData.length === 0 || isAutoUpdating || isInitializing) return;
             
             try {
-                const lastDataDate = new Date(investmentData[investmentData.length - 1].date);
+                const lastDataDate = new Date(cumulativeData[cumulativeData.length - 1].date);
                 const today = new Date();
                 
                 // 计算最后一个数据月的下个月
                 const nextMonth = new Date(lastDataDate);
                 nextMonth.setMonth(lastDataDate.getMonth() + 1);
+                
+                // 确保不超过当前年份的12月
+                const currentYear = new Date().getFullYear();
+                if (nextMonth.getFullYear() > currentYear || 
+                    (nextMonth.getFullYear() === currentYear && nextMonth.getMonth() > 11)) {
+                    return;
+                }
                 
                 // 如果今天已经是下个月的15号或之后，自动更新数据
                 if (today.getFullYear() > nextMonth.getFullYear() || 
@@ -1040,43 +1225,52 @@
         
         // 自动更新数据
         function autoUpdateData() {
-            if (investmentData.length === 0 || isInitializing) {
+            if (cumulativeData.length === 0 || isInitializing) {
                 isAutoUpdating = false;
                 return;
             }
             
             try {
                 // 获取最后一条数据的日期
-                const lastDate = new Date(investmentData[investmentData.length - 1].date);
-                const lastGrowth = investmentData[investmentData.length - 1].growth;
+                const lastDate = new Date(cumulativeData[cumulativeData.length - 1].date);
+                const lastGrowth = cumulativeData[cumulativeData.length - 1].cumulativeGrowth;
                 
                 // 计算下个月的日期
                 const nextDate = new Date(lastDate);
                 nextDate.setMonth(lastDate.getMonth() + 1);
                 
-                // 根据趋势生成下个月的增长率
-                const trendFactor = 0.2; // 保持小幅增长趋势
-                const randomFluctuation = (Math.random() * 0.4) - 0.2;
+                // 确保不超过当前年份的12月
+                const currentYear = new Date().getFullYear();
+                if (nextDate.getFullYear() > currentYear || 
+                    (nextDate.getFullYear() === currentYear && nextDate.getMonth() > 11)) {
+                    isAutoUpdating = false;
+                    return;
+                }
+                
+                // 根据趋势生成下个月的累计增长率
+                const trendFactor = 0.15; // 累计增幅的月度增长趋势
+                const randomFluctuation = (Math
+                const randomFluctuation = (Math.random() * 0.3) - 0.1;
                 let nextGrowth = lastGrowth + trendFactor + randomFluctuation;
                 
-                // 确保增长率在合理范围内
+                // 确保累计增长率在合理范围内
                 nextGrowth = Math.max(5, Math.min(8, nextGrowth));
                 nextGrowth = parseFloat(nextGrowth.toFixed(1));
                 
-                // 计算与上月的变化
+                // 计算与上月累计的变化
                 const changeFromPrevious = parseFloat((nextGrowth - lastGrowth).toFixed(1));
                 
                 // 添加新数据到数据集
-                investmentData.push({
+                cumulativeData.push({
                     date: nextDate.toISOString().split('T')[0],
-                    growth: nextGrowth
+                    cumulativeGrowth: nextGrowth
                 });
                 
                 // 记录更新历史
                 updateHistory.unshift({
                     updateTime: new Date().toISOString(),
-                    dataMonth: nextDate.toISOString().split('T')[0],
-                    growth: nextGrowth,
+                    dataPeriod: nextDate.toISOString().split('T')[0],
+                    cumulativeGrowth: nextGrowth,
                     changeFromPrevious: changeFromPrevious,
                     isAuto: true
                 });
@@ -1087,13 +1281,16 @@
                 // 更新图表和统计信息
                 initChart();
                 updateStatistics();
+                displayYearlyDataTable();
                 displayUpdateHistory();
                 
                 // 显示新更新指示器
                 document.getElementById('new-update-indicator').classList.remove('hidden');
                 
                 // 显示自动更新通知
-                showNotification(`已自动更新至 ${formatDate(nextDate.toISOString().split('T')[0])} 的数据`);
+                const year = nextDate.getFullYear();
+                const month = nextDate.getMonth() + 1;
+                showNotification(`已自动更新至 ${year}年1-${month}月累计数据`);
             } catch (error) {
                 console.error('自动更新数据失败:', error);
             } finally {
@@ -1144,20 +1341,6 @@
             document.body.style.overflow = '';
         }
         
-        // 格式化日期显示
-        function formatDate(dateString) {
-            try {
-                const date = new Date(dateString);
-                return date.toLocaleDateString('zh-CN', {
-                    year: 'numeric',
-                    month: 'long'
-                });
-            } catch (error) {
-                console.error('格式化日期失败:', error);
-                return dateString;
-            }
-        }
-        
         // 启用界面元素
         function enableUIElements() {
             // 启用更新按钮
@@ -1179,7 +1362,7 @@
                 document.getElementById('retry-load').addEventListener('click', () => {
                     hideDataError();
                     // 重置数据
-                    investmentData = [];
+                    cumulativeData = [];
                     updateHistory = [];
                     // 重新初始化
                     startInitialization();
